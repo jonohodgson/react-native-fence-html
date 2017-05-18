@@ -185,11 +185,14 @@ class HTMLStyles {
           }
           return undefined
         }
-        return [key, value] */
+         return [key, value] */
 
-          const numericValue = parseFloat(value.replace('px', ''))
-          if (!isNaN(numericValue)) {
-              return [key, numericValue]
+          // See if we can convert a 20px to a 20 automagically
+          if (styleProps[key] === React.PropTypes.number) {
+              const numericValue = parseFloat(value.replace('px', ''))
+              if (!isNaN(numericValue)) {
+                  return [key, numericValue]
+              }
           }
 
           return [key, value];
